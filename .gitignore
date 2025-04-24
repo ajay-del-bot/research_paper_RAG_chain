@@ -1,0 +1,13 @@
+# Ignore large datasets or temp files
+*.csv
+*.nc
+*.h5
+*.tmp
+*.log
+
+# Ignore Python cache and env
+__pycache__/
+*.pyc
+.env
+venv/bin
+venv
