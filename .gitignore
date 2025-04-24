@@ -9,5 +9,5 @@
 __pycache__/
 *.pyc
 .env
-venv/bin
+venv/bin/
 venv/
