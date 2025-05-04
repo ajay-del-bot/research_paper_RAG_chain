@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 import tempfile
 from upload_file import (
     load_pdf_file,
@@ -9,7 +9,13 @@ from upload_file import (
 from query_engine import get_answer
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+
 
 @app.route("/health")
 def health():

@@ -37,5 +37,10 @@ question_answer_chain = create_stuff_documents_chain(model, prompt)
 rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 
 def get_answer(question: str):
+    docs = retriever.invoke(question)
+    print("\n=== Retrieved Context ===")
+    for i, doc in enumerate(docs):
+        print(f"\n--- Doc {i+1} ---\n{doc.page_content}\n")
+
     response = rag_chain.invoke({"input": question})
     return response["answer"]

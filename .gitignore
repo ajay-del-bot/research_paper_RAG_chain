@@ -10,3 +10,4 @@ venv/
 .env.*
 rp_venv/
 .ipynb_checkpoints/
+cs410-fp/
