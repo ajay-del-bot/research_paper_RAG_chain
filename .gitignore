@@ -1,13 +1,11 @@
-# Ignore large datasets or temp files
-*.csv
-*.nc
-*.h5
-*.tmp
-*.log
-
-# Ignore Python cache and env
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
 .env
-venv/bin/
 venv/
+.env.*
+rp_venv/
