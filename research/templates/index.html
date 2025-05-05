@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Research Paper Q&A</title>
+    <meta charset="UTF-8" />
+    <title>Research Paper Q&A Assistant</title>
     <style>
         body {
             font-family: "Segoe UI", sans-serif;
@@ -10,6 +10,10 @@
             padding: 40px;
             margin: 0;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
         }
 
         .container {
@@ -19,6 +23,19 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            text-align: center; /* Center-align content */
+        }
+
+        h1 {
+            color: #2b2d42;
+            margin-bottom: 5px;
+            font-size: 2rem; /* Slightly smaller title */
+        }
+
+        .description {
+            color: #555;
+            font-size: 1.07em;
+            margin-bottom: 25px;
         }
 
         h2 {
@@ -59,6 +76,7 @@
             border-radius: 8px;
             border-left: 4px solid #4a90e2;
             font-size: 16px;
+            text-align: left; /* Keep response text left-aligned for readability */
         }
 
         .loader {
@@ -71,6 +89,11 @@
 </head>
 <body>
     <div class="container">
+        <h1>Research Paper Q&amp;A Assistant</h1>
+        <div class="description">
+            <em>Upload a research paper (PDF format) and ask questions to get concise answers.</em>
+        </div>
+
         <h2>Upload Research PDF</h2>
         <form id="uploadForm">
             <input type="file" name="file" accept="application/pdf" required />
@@ -110,9 +133,29 @@
             const res = await fetch(`/query?question=${encodeURIComponent(question)}`);
             const json = await res.json();
             loader.style.display = "none";
-            document.getElementById("response").innerHTML =
-                json.answer ? `<strong>Answer:</strong> ${json.answer}` :
-                `<strong>Error:</strong> ${json.error}`;
+
+            if (json.answer) {
+                let html = `<strong>Answer:</strong> ${json.answer}`;
+                if (json.references && Array.isArray(json.references) && json.references.length > 0) {
+                    // Filter unique references by title and section
+                    const uniqueRefs = json.references.filter((ref, index, self) =>
+                        index === self.findIndex(r =>
+                            (r.metadata?.title === ref.metadata?.title) &&
+                            (r.metadata?.section === ref.metadata?.section)
+                        )
+                    );
+                    html += `<hr><strong>References:</strong><ul>`;
+                    uniqueRefs.forEach((ref) => {
+                        let title = (ref.metadata && ref.metadata.title) ? ref.metadata.title : "Untitled";
+                        let section = (ref.metadata && ref.metadata.section) ? ref.metadata.section : "Unknown Section";
+                        html += `<li><strong>${title}</strong> <em>(${section})</em></li>`;
+                    });
+                    html += `</ul>`;
+                }
+                document.getElementById("response").innerHTML = html;
+            } else {
+                document.getElementById("response").innerHTML = `<strong>Error:</strong> ${json.error}`;
+            }
         }
     </script>
 </body>

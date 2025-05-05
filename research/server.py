@@ -52,8 +52,8 @@ def query():
         return jsonify({"error": "Missing question parameter"}), 400
 
     try:
-        answer = get_answer(question)
-        return jsonify({"answer": answer}) 
+        result = get_answer(question)
+        return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

@@ -37,10 +37,29 @@ question_answer_chain = create_stuff_documents_chain(model, prompt)
 rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 
 def get_answer(question: str):
+    # Retrieve relevant document chunks
     docs = retriever.invoke(question)
+    
+    # Print or collect references
+    references = []
     print("\n=== Retrieved Context ===")
     for i, doc in enumerate(docs):
+        # If your doc object has metadata, include it here
+        ref_info = {
+            "content": doc.page_content,
+            "metadata": doc.metadata if hasattr(doc, "metadata") else {}
+        }
+        references.append(ref_info)
         print(f"\n--- Doc {i+1} ---\n{doc.page_content}\n")
+        if hasattr(doc, "metadata"):
+            print(f"Metadata: {doc.metadata}")
 
+    # Generate answer
     response = rag_chain.invoke({"input": question})
-    return response["answer"]
+    answer = response["answer"]
+
+    # Return both answer and references
+    return {
+        "answer": answer,
+        "references": references
+    }
