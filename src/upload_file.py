@@ -20,11 +20,11 @@ index_name = os.environ.get('INDEX_NAME')
 # Initialize Pinecone
 pc = Pinecone(api_key=PINECONE_API_KEY)
 
+
 # Initialize embeddings
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
 # Create Pinecone index (run once or check before creating)
-
 def create_index():
     pc.create_index(
         name=index_name,
@@ -32,6 +32,11 @@ def create_index():
         metric="cosine",
         spec=ServerlessSpec(cloud="aws", region="us-east-1")
     )
+
+# Check and create index if it doesn't exist
+if index_name not in pc.list_indexes().names():
+    print(f"Index '{index_name}' not found. Creating it now...")
+    create_index()
 
 def load_pdf_file(file_path: str):
     loader = PyPDFLoader(file_path)
