@@ -2,11 +2,11 @@
 
 echo "🚀 Starting setup for Research Paper Q&A Assistant..."
 
-# Clone the repository
-if [ ! -d "research_paper_RAG_chain" ]; then
-    git clone https://github.com/ajay-del-bot/research_paper_RAG_chain.git
-fi
-cd research_paper_RAG_chain || exit 1
+# # Clone the repository
+# if [ ! -d "research_paper_RAG_chain" ]; then
+#     git clone https://github.com/ajay-del-bot/research_paper_RAG_chain.git
+# fi
+# cd research_paper_RAG_chain || exit 1
 
 # Create and activate virtual environment
 if [ ! -d "venv" ]; then
