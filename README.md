@@ -32,7 +32,17 @@ This system enables users to:
 
 ---
 
-## 🛠️ Installation & Setup
+
+## Method 1: Using the Setup Script 
+
+```bash
+chmod +x run_app.sh
+./run_app.sh
+```
+
+## Method 2: Manual Execution
+
+### 🛠️ Installation & Setup
 
 1. **Clone the repository**
 
