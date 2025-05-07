@@ -30,24 +30,39 @@ This system enables users to:
 
 ---
 
-## 🛠️ Installation and Setup
+## 🛠️ Installation & Setup
 
-```
+1. **Clone the repository**
+```bash
 git clone https://github.com/your-username/research-paper-qa-assistant.git
 cd research-paper-qa-assistant
+```
+
+2. **Create and activate a virtual environment**
+```bash
+# For Linux/macOS
+python3 -m venv venv
+source venv/bin/activate
+
+# For Windows
+python -m venv venv
+venv\Scripts\activate
+```
+
+3. **Install dependencies**
+```bash
 pip install -r requirements.txt
 ```
-Note : Make sure you have Python and pip installed.
 
-### Set up environment variables in .env:
-```
+4. **Set up environment variables in `.env`**
+```env
 PINECONE_API_KEY=your_pinecone_key
 GOOGLE_API_KEY=your_google_generative_ai_key
-``` 
+```
 
 ### 💻 Running the App
 ``` 
-python app.py
+python server.py
 ``` 
 
 ## 🧪 Future Enhancements
