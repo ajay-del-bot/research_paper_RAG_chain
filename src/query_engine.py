@@ -9,7 +9,7 @@ from pinecone.grpc import PineconeGRPC as Pinecone
 import os
 
 load_dotenv()
-PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY2')
+PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY')
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 index_name = os.environ.get('INDEX_NAME')
 
