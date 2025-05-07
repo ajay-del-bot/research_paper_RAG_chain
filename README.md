@@ -64,7 +64,7 @@ pip install -r requirements.txt
 ```env
 PINECONE_API_KEY=YOUR_PINNECONE_API_KEY
 GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
-INDEX_NAME='test_db'
+INDEX_NAME='test-db'
 ```
 
 ### 💻 Running the App
