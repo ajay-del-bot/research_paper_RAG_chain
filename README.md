@@ -30,7 +30,7 @@ This system enables users to:
 
 ---
 
-## 🛠️ Installation
+## 🛠️ Installation and Setup
 
 ```
 git clone https://github.com/your-username/research-paper-qa-assistant.git
@@ -45,16 +45,13 @@ PINECONE_API_KEY=your_pinecone_key
 GOOGLE_API_KEY=your_google_generative_ai_key
 ``` 
 
-## 💻 Running the App
+### 💻 Running the App
+``` 
 python app.py
-
+``` 
 
 ## 🧪 Future Enhancements
 - Support for tables, figures, equations
 - Better layout handling for multi-column PDFs
 - User authentication & session history
 - Integration with multiple LLMs
-
-
-
-MIT License - see the LICENSE file for details.
