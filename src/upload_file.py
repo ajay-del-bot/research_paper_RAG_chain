@@ -15,21 +15,23 @@ import os
 load_dotenv()
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY2')
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+index_name = os.environ.get('INDEX_NAME')
 
 # Initialize Pinecone
 pc = Pinecone(api_key=PINECONE_API_KEY)
-index_name = "research-paper-llm-db5"
 
 # Initialize embeddings
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
 # Create Pinecone index (run once or check before creating)
-# pc.create_index(
-#     name=index_name,
-#     dimension=384,
-#     metric="cosine",
-#     spec=ServerlessSpec(cloud="aws", region="us-east-1")
-# )
+
+def create_index():
+    pc.create_index(
+        name=index_name,
+        dimension=384,
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+    )
 
 def load_pdf_file(file_path: str):
     loader = PyPDFLoader(file_path)

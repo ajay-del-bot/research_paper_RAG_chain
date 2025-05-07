@@ -4,7 +4,8 @@ from upload_file import (
     load_pdf_file,
     group_docs_by_path,
     chunk_all_sections,
-    push_to_vector_db
+    push_to_vector_db,
+    create_index
 )
 from query_engine import get_answer
 
@@ -15,6 +16,10 @@ app = Flask(__name__, template_folder="templates")
 def home():
     return render_template("index.html")
 
+@app.route("/create_index", methods=["GET"])
+def create_index():
+    create_index()
+    return jsonify({"body": "Index Created"})
 
 
 @app.route("/health")

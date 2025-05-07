@@ -65,6 +65,10 @@ GOOGLE_API_KEY=your_google_generative_ai_key
 python server.py
 ``` 
 
+If running the app for the first time, call the /create_index API to create new index
+```bash
+curl -X GET http://localhost:8001/create_index
+```
 ## 🧪 Future Enhancements
 - Support for tables, figures, equations
 - Better layout handling for multi-column PDFs

@@ -11,9 +11,9 @@ import os
 load_dotenv()
 PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY2')
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+index_name = os.environ.get('INDEX_NAME')
 
 pc = Pinecone(api_key=PINECONE_API_KEY)
-index_name = "research-paper-llm-db5"
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
 model = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=0.3)
